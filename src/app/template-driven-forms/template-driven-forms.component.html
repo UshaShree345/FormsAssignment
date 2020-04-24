@@ -1,0 +1,29 @@
+<div class="col-md-4 offset-md-4 mt-5">
+    <form #loginForm='ngForm'>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" #email='ngModel' ngModel
+            class="form-control" required email minlength="10">
+            <div *ngIf='email.touched && email.invalid'>
+                <div *ngIf='email.errors.required' class="alert alert-danger">
+                        This field is mandatory
+                </div>
+                <div *ngIf='email.errors.minlength' class="alert alert-danger">
+                    This field accepts minimum 10 characters
+                </div>
+                <div *ngIf='email.errors.email' class="alert alert-danger">
+                    This Field accepts only email
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" #password='ngModel' ngModel 
+            class="form-control" required minlength="8">
+        </div>
+         <button class="btn btn-primary float-right" type="submit"
+        (click)='submitForm(email)' [disabled]='loginForm.invalid'>
+            Submit
+        </button>
+    </form>
+</div>
